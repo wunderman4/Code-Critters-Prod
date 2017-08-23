@@ -1,0 +1,68 @@
+body {
+  margin: calc(10vh - 10px) auto;
+  padding: 0;
+  font-family: sans-serif;
+  width: calc(80vh + 18px);
+}
+
+.board {
+  display: flex; /* establish flex container */
+  flex-wrap: wrap; /* enable flex items to wrap */
+}
+
+.square {
+  border: 1px solid #333;
+  display: flex;
+  flex: 0 0 30%;
+  height: 25vh;
+}
+
+.square.black {
+  background-color: #777;
+}
+
+.square .circle {
+  border-radius: 50%;
+  margin: 10%;
+  height: 80%;
+  width: 80%;
+}
+
+.circle.user {
+  background: url(./images/lizBlack.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 8em;
+  background-color: #00e1ff;
+}
+
+.circle.enemy {
+  background: url(./images/critter.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 7em;
+  background-color: #ff198e;
+}
+
+.circle.player.active {
+  box-shadow: inset 0 0 10px cornflowerblue;
+}
+
+.circle.enemy.active {
+  box-shadow: inset 0 0 10px palegreen;
+}
+
+/*Direction transforming */
+.north {
+  transform: rotate(0deg);
+}
+
+.east {
+  transform: rotate(90deg);
+}
+.south {
+  transform: rotate(180deg);
+}
+.west {
+  transform: rotate(270deg);
+}
