@@ -1,8 +1,8 @@
 body {
-  margin: calc(10vh - 10px) auto;
+  margin: calc(5vh - 10px) auto;
   padding: 0;
   font-family: sans-serif;
-  width: calc(80vh + 18px);
+  width: calc(90vh + 18px);
 }
 
 .board {
@@ -13,8 +13,6 @@ body {
 .square {
   border: 1px solid #333;
   display: flex;
-  flex: 0 0 30%;
-  height: 25vh;
 }
 
 .square.black {
@@ -29,18 +27,22 @@ body {
 }
 
 .circle.user {
-  background: url(./images/lizBlack.svg);
+  justify-content: center;
+  align-items: center;
+  background: url(../images/lizBlack.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 8em;
+  /* background-size: 8em; */
   background-color: #00e1ff;
 }
 
 .circle.enemy {
-  background: url(./images/critter.svg);
+  justify-content: center;
+  align-items: center;
+  background: url(../images/critter.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 7em;
+  /* background-size: 6vw; */
   background-color: #ff198e;
 }
 
