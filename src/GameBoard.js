@@ -40,7 +40,7 @@ class GameBoard extends Component {
   };
 
   componentDidMount() {
-    //console.log(this.state.tiles);
+    console.log(this.state.tiles);
     window.addEventListener("keydown", this.userChoice);
   }
   render() {

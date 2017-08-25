@@ -18,4 +18,5 @@ export const MOVE_INVALID = "invalid"; // invalid move to either off gird or hea
 export const MOVE_ATTACK = "attack"; // valid forward move to occupied tile.
 
 export const SCALE = 0.833333;
-export const SIZE = 8;
+export const SIZE = 10;
+export const ENEMY_COUNT = 10;

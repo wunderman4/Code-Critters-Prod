@@ -21,8 +21,8 @@ function generatePos() {
 
 function getEnemies() {
   const enemies = [];
-  for (let i = 0; i < 10; i++) {
-    if (enemies.length === 10) return enemies;
+  for (let i = 0; i < C.ENEMY_COUNT; i++) {
+    if (enemies.length === C.ENEMY_COUNT) return enemies;
     const enemyX = generatePos();
     const enemyY = generatePos();
 

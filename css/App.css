@@ -46,14 +46,6 @@ body {
   background-color: #ff198e;
 }
 
-.circle.player.active {
-  box-shadow: inset 0 0 10px cornflowerblue;
-}
-
-.circle.enemy.active {
-  box-shadow: inset 0 0 10px palegreen;
-}
-
 /*Direction transforming */
 .north {
   transform: rotate(0deg);
