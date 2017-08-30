@@ -9,7 +9,13 @@ class GameBoard extends Component {
     tiles: getBoard()
   };
 
+  returnState() {
+    console.log(this.state.tiles);
+    return this.state.tiles;
+  }
+
   // Entry point for user moves, currently set to test movement of Player.
+  //this needs to be the handler for events from socket.io
   userChoice = e => {
     const userState =
       this.state.tiles.find(tile => tile.player === C.PLAYER_USER) || {};
@@ -34,19 +40,26 @@ class GameBoard extends Component {
       tile =>
         tile.player === C.PLAYER_USER ? { ...tile, direction: direction } : tile
     );
-    this.setState({
-      tiles: newBoard
-    });
+    this.setState(
+      {
+        tiles: newBoard
+      },
+      () => {
+        // socket.send needs to go here to send updated gameboard
+        window.gameBoard = this.state.tiles;
+      }
+    );
   };
 
   componentDidMount() {
-    console.log(this.state.tiles);
+    // Open socket.io connection here
+    window.gameBoard = this.state.tiles;
     window.addEventListener("keydown", this.userChoice);
   }
   render() {
     return (
       <div className="board">
-        {this.state.tiles.map(t =>
+        {this.state.tiles.map(t => (
           <Tile
             key={`${t.x}-${t.y}`}
             player={t.player}
@@ -55,7 +68,7 @@ class GameBoard extends Component {
             y={t.y}
             //size={}
           />
-        )}
+        ))}
       </div>
     );
   }

@@ -1,13 +1,35 @@
+/* 
+font-family: 'Fredoka One', cursive;
+*/
+
 body {
   margin: calc(5vh - 10px) auto;
   padding: 0;
   font-family: sans-serif;
   width: calc(90vh + 18px);
 }
+.banner {
+  margin: calc(5vh - 10px) auto;
+  padding: 0;
+  justify-content: center;
+  width: calc(90vh + 18px);
+}
+.title {
+  display: block;
+  margin: auto;
+  width: 300px;
+  align-items: center;
+  background-color: #00e1ff;
+  display: block;
+  text-align: center;
+  font-family: "Fredoka One", cursive;
+}
 
 .board {
   display: flex; /* establish flex container */
   flex-wrap: wrap; /* enable flex items to wrap */
+  margin: auto;
+  justify-content: center;
 }
 
 .square {
@@ -59,4 +81,26 @@ body {
 }
 .west {
   transform: rotate(270deg);
+}
+
+.button {
+  opacity: 0.9;
+  color: #1a1a1a;
+  background: #ff198e;
+  border: none;
+  font-size: 16px;
+  border-radius: 3px;
+  width: 200px;
+  text-align: center;
+  display: block;
+  padding: 7px 0;
+  margin: 10px auto;
+}
+.button:hover:enabled {
+  opacity: 1;
+  background: #ff198e;
+  text-decoration: none;
+}
+.button:active {
+  transform: translateY(1px);
 }

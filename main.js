@@ -3,7 +3,7 @@ const electron = require("electron");
 const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
-
+const ipcMain = electron.ipcMain;
 const path = require("path");
 const url = require("url");
 
@@ -24,8 +24,14 @@ function createWindow() {
     })
   );
 
+  // ipc would work here, not needed.
+  // ipcMain.on("asynchronous-message", (event, arg) => {
+  //   console.log(arg); // prints "ping"
+  //   event.sender.send("asynchronous-reply", "pong");
+  // });
+
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on("closed", function() {
