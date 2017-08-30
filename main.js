@@ -6,6 +6,10 @@ const BrowserWindow = electron.BrowserWindow;
 const ipcMain = electron.ipcMain;
 const path = require("path");
 const url = require("url");
+// creating server with socket.io
+var server = require("http").createServer(() => {});
+var io = require("socket.io")(server);
+var fs = require("fs");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -23,6 +27,18 @@ function createWindow() {
       slashes: true
     })
   );
+
+  // Server listening and emiting based on set interval
+  server.listen(9090);
+  io.on("connection", function(socket) {
+    socket.emit("move", { direction: "clockwise" });
+    setInterval(() => {
+      socket.emit("move", { direction: "clockwise" });
+    }, 5000);
+    socket.on("response", function(data) {
+      console.log(data);
+    });
+  });
 
   // ipc would work here, not needed.
   // ipcMain.on("asynchronous-message", (event, arg) => {

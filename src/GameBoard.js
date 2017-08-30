@@ -3,39 +3,52 @@ import * as C from "./Constants.js";
 import Tile from "./Tile.js";
 import { rotate, move } from "./MoveLogic.js";
 import { getBoard } from "./util";
+import io from "socket.io-client";
+
+var socket;
 
 class GameBoard extends Component {
   state = {
     tiles: getBoard()
   };
-
-  returnState() {
-    console.log(this.state.tiles);
-    return this.state.tiles;
-  }
-
-  // Entry point for user moves, currently set to test movement of Player.
-  //this needs to be the handler for events from socket.io
+  // userChoice is where we send user move.
   userChoice = e => {
+    console.log(e);
     const userState =
       this.state.tiles.find(tile => tile.player === C.PLAYER_USER) || {};
 
     var direction = userState.direction; // used to set new direction of user.
 
-    switch (e.key) {
-      case "ArrowRight":
+    switch (e.direction) {
+      case C.DIRECTION_CLOCKWISE:
         direction = rotate(C.DIRECTION_CLOCKWISE, userState);
         break;
-      case "ArrowUp":
+      case C.MOVE_MAKE:
         move(userState, this.state.tiles);
         break;
-      case "ArrowLeft":
+      case C.DIRECTION_COUNTERCLOCKWISE:
         direction = rotate(C.DIRECTION_COUNTERCLOCKWISE, userState);
         break;
       default:
         direction = userState.direction;
         break;
     }
+
+    // old key press moves
+    // switch (e.key) {
+    //   case "ArrowRight":
+    //     direction = rotate(C.DIRECTION_CLOCKWISE, userState);
+    //     break;
+    //   case "ArrowUp":
+    //     move(userState, this.state.tiles);
+    //     break;
+    //   case "ArrowLeft":
+    //     direction = rotate(C.DIRECTION_COUNTERCLOCKWISE, userState);
+    //     break;
+    //   default:
+    //     direction = userState.direction;
+    //     break;
+    // }
     const newBoard = this.state.tiles.map(
       tile =>
         tile.player === C.PLAYER_USER ? { ...tile, direction: direction } : tile
@@ -46,7 +59,7 @@ class GameBoard extends Component {
       },
       () => {
         // socket.send needs to go here to send updated gameboard
-        window.gameBoard = this.state.tiles;
+        socket.emit("response", { GameBoard: this.state.tiles });
       }
     );
   };
@@ -55,6 +68,9 @@ class GameBoard extends Component {
     // Open socket.io connection here
     window.gameBoard = this.state.tiles;
     window.addEventListener("keydown", this.userChoice);
+    // socket.io
+    socket = io("http://localhost:9090");
+    socket.on("move", this.userChoice);
   }
   render() {
     return (
