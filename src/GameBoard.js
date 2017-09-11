@@ -19,7 +19,7 @@ class GameBoard extends Component {
 
     var direction = userState.direction; // used to set new direction of user.
 
-    switch (e.direction) {
+    switch (e) {
       case C.DIRECTION_CLOCKWISE:
         direction = rotate(C.DIRECTION_CLOCKWISE, userState);
         break;
@@ -59,7 +59,10 @@ class GameBoard extends Component {
       },
       () => {
         // socket.send needs to go here to send updated gameboard
-        socket.emit("response", { GameBoard: this.state.tiles });
+        setTimeout(() => {
+          socket.emit("response", { GameBoard: this.state.tiles });
+        }, 1000);
+
       }
     );
   };
@@ -82,7 +85,7 @@ class GameBoard extends Component {
             direction={t.direction}
             x={t.x}
             y={t.y}
-            //size={}
+          //size={}
           />
         ))}
       </div>
