@@ -10,7 +10,7 @@ This app is a basic electron app with ReactJS being used to render the gameboard
 - "counter-clockwise": The user will rotate 90 degrees counter-clockwise
 
 
-You can learn more about each of these components within the [Quick Start Guide](http://electron.atom.io/docs/tutorial/quick-start).
+
 
 ## To Use
 
@@ -35,6 +35,7 @@ npm start
 - [electron/simple-samples](https://github.com/electron/simple-samples) - small applications with ideas for taking them further
 - [electron/electron-api-demos](https://github.com/electron/electron-api-demos) - an Electron app that teaches you how to use Electron
 - [hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps) - small demo apps for the various Electron APIs
+ You can learn more about each of these components within the [Quick Start Guide](http://electron.atom.io/docs/tutorial/quick-start).
 
 ## License
 
