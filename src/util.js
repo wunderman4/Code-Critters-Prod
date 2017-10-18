@@ -1,5 +1,12 @@
 import * as C from "./Constants.js";
 
+function timeControl(userMove) {
+  const um = userMove;
+}
+
+//////////////////////////Board Generator Below//////////////////////////////////
+
+// Sets the size and scale of the gameboard
 export function boardStyle() {
   const width = 100 / C.SIZE - 1;
   return {
@@ -8,17 +15,13 @@ export function boardStyle() {
   };
 }
 
-const directions = [
-  C.DIRECTION_NORTH,
-  C.DIRECTION_EAST,
-  C.DIRECTION_SOUTH,
-  C.DIRECTION_WEST
-];
-
+// used in getEnemies & getBoard functions to generate random positions
+// for the enemies and the player.
 function generatePos() {
   return Math.floor(Math.random() * C.SIZE);
 }
 
+// generates set number of enemies in different positions
 function getEnemies() {
   const enemies = [];
   for (let i = 0; i < C.ENEMY_COUNT; i++) {
@@ -39,15 +42,21 @@ function getEnemies() {
   return enemies;
 }
 
+// takes the enemies and the player and places them on the correct tiles
+// within the board, then returns the complete board.
 export function getBoard() {
   const board = [];
 
-  const playerX = Math.floor(Math.random() * C.SIZE);
-  const playerY = Math.floor(Math.random() * C.SIZE);
+  const playerX = generatePos(); //Math.floor(Math.random() * C.SIZE);
+  const playerY = generatePos(); //Math.floor(Math.random() * C.SIZE);
   const playerDirection = Math.floor(Math.random() * 4);
-
   const enemies = getEnemies();
-  //console.log(enemies);
+  const directions = [
+    C.DIRECTION_NORTH,
+    C.DIRECTION_EAST,
+    C.DIRECTION_SOUTH,
+    C.DIRECTION_WEST
+  ];
 
   for (let i = 0; i < C.SIZE; i++) {
     for (let j = 0; j < C.SIZE; j++) {
