@@ -11,9 +11,21 @@ class GameBoard extends Component {
   state = {
     tiles: getBoard()
   };
+
+  // togleStep = await () => {
+  //   return !this.state.singleStep;
+  // };
+
+  timeControl() {}
+
   // userChoice is where we send user move.
   userChoice = e => {
-    console.log(e);
+    // if (!timeControl(e, this.props.beenClicked, this.props.autoPlay)) {
+    //   // await button click to move a piece
+    //   return;
+    // }
+
+    //console.log(e);
     const userState =
       this.state.tiles.find(tile => tile.player === C.PLAYER_USER) || {};
 
@@ -37,14 +49,14 @@ class GameBoard extends Component {
     // old key press moves
     // switch (e.key) {
     //   case "ArrowRight":
-    //     direction = rotate(C.DIRECTION_CLOCKWISE, userState);
+    //     socket.emit("response", { GameBoard: this.state.tiles });
     //     break;
-    //   case "ArrowUp":
-    //     move(userState, this.state.tiles);
-    //     break;
-    //   case "ArrowLeft":
-    //     direction = rotate(C.DIRECTION_COUNTERCLOCKWISE, userState);
-    //     break;
+    //   //   case "ArrowUp":
+    //   //     move(userState, this.state.tiles);
+    //   //     break;
+    //   //   case "ArrowLeft":
+    //   //     direction = rotate(C.DIRECTION_COUNTERCLOCKWISE, userState);
+    //   //     break;
     //   default:
     //     direction = userState.direction;
     //     break;
@@ -62,7 +74,6 @@ class GameBoard extends Component {
         setTimeout(() => {
           socket.emit("response", { GameBoard: this.state.tiles });
         }, 1000);
-
       }
     );
   };
@@ -75,6 +86,16 @@ class GameBoard extends Component {
     socket = io("http://localhost:9090");
     socket.on("move", this.userChoice);
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.autoPlay && nextProps.autoPlay) {
+      timeControl();
+    }
+
+    if (this.props.autoPlay && !nextProps.autoPlay) {
+      // stopTimeControl();
+    }
+  }
   render() {
     return (
       <div className="board">
@@ -85,7 +106,7 @@ class GameBoard extends Component {
             direction={t.direction}
             x={t.x}
             y={t.y}
-          //size={}
+            //size={}
           />
         ))}
       </div>
