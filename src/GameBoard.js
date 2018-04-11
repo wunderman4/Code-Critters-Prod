@@ -47,21 +47,21 @@ class GameBoard extends Component {
 		}
 
 		// Uncomment to enable player move by key press.
-		// switch (e.key) {
-		// 	case 'ArrowRight':
-		// 		//socket.emit('response', { GameBoard: this.state.tiles });
-		// 		direction = rotate(C.DIRECTION_CLOCKWISE, userState);
-		// 		break;
-		// 	case 'ArrowUp':
-		// 		move(userState, this.state.tiles);
-		// 		break;
-		// 	case 'ArrowLeft':
-		// 		direction = rotate(C.DIRECTION_COUNTERCLOCKWISE, userState);
-		// 		break;
-		// 	default:
-		// 		direction = userState.direction;
-		// 		break;
-		// }
+		switch (e.key) {
+			case 'ArrowRight':
+				socket.emit('response', { GameBoard: this.state.tiles });
+				//direction = rotate(C.DIRECTION_CLOCKWISE, userState);
+				break;
+			// case 'ArrowUp':
+			// 	move(userState, this.state.tiles);
+			// 	break;
+			// case 'ArrowLeft':
+			// 	direction = rotate(C.DIRECTION_COUNTERCLOCKWISE, userState);
+			// 	break;
+			default:
+				direction = userState.direction;
+				break;
+		}
 
 		const newBoard = this.state.tiles.map(
 			tile =>

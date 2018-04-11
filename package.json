@@ -9,7 +9,13 @@
 		"electron": "electron ."
 	},
 	"repository": "https://github.com/wunderman4/Code-Critters-Prod",
-	"keywords": ["Electron", "quick", "start", "tutorial", "demo"],
+	"keywords": [
+		"Electron",
+		"quick",
+		"start",
+		"tutorial",
+		"demo"
+	],
 	"author": "wunderman4",
 	"license": "CC0-1.0",
 	"devDependencies": {
@@ -37,6 +43,11 @@
 		"socket.io": "^2.0.3"
 	},
 	"babel": {
-		"presets": ["env", "es2015", "stage-2", "react"]
+		"presets": [
+			"env",
+			"es2015",
+			"stage-2",
+			"react"
+		]
 	}
 }
